@@ -1,0 +1,62 @@
+import math 
+def trans (r,x,y,xa,ya):
+    if x == xa and y == ya:
+        return xa,ya
+    else:
+        k = (r**2)/( (xa-x)**2+(ya-y)**2 )
+        xtr = xa - k*(xa-x)
+        ytr = ya - k*(ya-y)
+        return xtr,ytr
+n = int(input())
+x = []
+y = []
+R = 0
+for i in range(n):
+    a = [int(x) for x in input().split()]
+    x.append(a[0])
+    y.append(a[1])
+    if x[i]>=10000 or y[i]>=10000:
+        R += 1000
+    if x[i]>=1000000 or y[i]>=1000000:
+        R += 100000
+    if x[i]>=100000000 or y[i]>=100000000:
+        R += 10000000
+if n == 3:
+    print(x[0],y[0])
+    print(x[1],y[1])
+    print(x[2],y[2])
+else:
+    r = 1
+    if R >= 1000:
+        r = 1000
+    if R >= 100000:
+        r = 100000
+    if R >= 10000000:
+        r = 10000000
+    xa = max(x)
+    inda = x.index(xa)
+    ya = y[inda]
+    xtr = [None]*n
+    ytr = [None]*n
+    for j in range(n):
+        xtr[j],ytr[j] = trans(r,x[j],y[j],xa,ya)
+    xb = min(xtr)
+    indb = xtr.index(xb)
+    yb = ytr[indb]
+    ang = []
+    for k in range(n):
+        xtr[k] -= xb
+        ytr[k] -= yb
+        if k == indb:
+            ang.append(None)
+        else:
+            ang.append(math.atan2(ytr[k],xtr[k]))   
+    angle = ang[:]
+    angle[inda] = 'pointA'
+    angle.remove(None)
+    angle.remove('pointA')
+    angle.sort()
+    indc = ang.index(angle[int((n-3)/2)])
+    print(x[inda],y[inda])
+    print(x[indb],y[indb])
+    print(x[indc],y[indc])

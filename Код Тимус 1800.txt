@@ -1,0 +1,14 @@
+array = [int(x) for x in input().split()]
+g = 981
+def specify(l,h,w):
+    global g
+    if l/2 >= h:
+        print('butter')
+    else:
+        t = ((2 * (h - l/2))/ g)**0.5
+        a = (t * 360 * (w/60) )%360
+        if 90 < a < 270:
+            print('bread')
+        else:
+            print('butter')
+specify(array[0],array[1],array[2])

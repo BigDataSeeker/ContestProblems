@@ -1,0 +1,30 @@
+array = [ int(x) for x in input().split() ]
+def maximum (mass):
+    amount = 0
+    for i in range(0,7):
+        amount += mass[i]
+        if mass[i] == 10 and mass[i+1] == 10:
+            amount += mass[i+1] + mass[i+2]
+        if mass[i] == 10 and mass[i+1] < 10:
+            amount += mass[i + 1]
+    amount += mass[7] + mass[8]
+    if mass[7] == 10 and mass[8] < 10:
+        amount +=  mass[8]
+    if mass[7] == 10 and mass[8] == 10:
+        if mass[9] >= 10:
+            amount +=  mass[8] + 10
+        else:
+            amount +=  mass[8] + mass[9]
+    if mass[8] == 10 and mass[9] >= 20:
+        amount +=  20
+    if mass[8] == 10 and mass[9] < 20:
+        amount +=  mass[9]
+    return amount + mass[9]
+def minimum (vect):
+    amount = 0
+    for j in range(0,10):
+        amount += vect[j]
+    if vect[8] == 10 and vect[9] > 20:
+        amount += 10
+    return amount
+print(str(minimum(array)) + ' ' + str(maximum(array)))

@@ -1,0 +1,17 @@
+import math
+a,b = [ int(x) for x in input().split() ]
+x1,y1,z1 = [int(x) for x in input().split()]
+x2,y2,z2 = [int(x) for x in input().split()]
+if y1 != y2 or z1 != z2:
+    print('No solution.')
+else:
+    l = ( z1**2 + y1**2 )**0.5
+    if (a+b) < l:
+        print('No solution.')
+    else:
+        alpha = math.acos(((a**2+b**2-l**2)/(2*a*b)))
+        if 3.14 >= alpha >= 3.14/2:
+            print(alpha)
+        else:
+            print('No solution.')
+    
